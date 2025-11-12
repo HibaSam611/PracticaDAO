@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface LibroAutorDAO {
     void addLibroAutor(LibroAutor libroAutor) throws Exception;
-    List<Libro> getAllLibrosAutores() throws Exception;
+    List<LibroAutor> getAllLibrosAutores() throws Exception;
     LibroAutor getLibrosAutoresById(int idLibro, int idAutor) throws Exception;
     void updateLibroAutor(LibroAutor libroAutor) throws Exception;
     void deleteLibroAutor(int idLibro, int idAutor) throws Exception;

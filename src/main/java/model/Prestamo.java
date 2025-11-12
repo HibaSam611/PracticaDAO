@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Prestamo {
 
+    //prueba
     private int id;
     private Date fechaInicio;
     private Date fechaFin;

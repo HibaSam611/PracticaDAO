@@ -7,6 +7,7 @@ import java.util.List;
 public interface PrestamoDAO {
 
     //prueba
+    void prueba ();
 
     void addPrestamo(Prestamo prestamo) throws Exception;
     List<Prestamo> getAllPrestamos() throws Exception;

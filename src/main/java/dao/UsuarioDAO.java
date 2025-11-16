@@ -6,9 +6,6 @@ import java.util.List;
 
 public interface UsuarioDAO {
 
-    //prueba
-    void prueba ();
-
     void addUsuario(Usuario usuario) throws Exception;
     List<Usuario> getAllUsuarios() throws Exception;
     Usuario getUsuarioById(int id) throws Exception;

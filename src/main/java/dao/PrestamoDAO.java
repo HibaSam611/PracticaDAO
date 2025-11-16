@@ -6,9 +6,6 @@ import java.util.List;
 
 public interface PrestamoDAO {
 
-    //prueba
-    void prueba ();
-
     void addPrestamo(Prestamo prestamo) throws Exception;
     List<Prestamo> getAllPrestamos() throws Exception;
     Prestamo getPrestamoById(int id) throws Exception;

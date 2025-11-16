@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 public class Usuario {
 
-    //prueba
-    private String prueba;
-
     private int id;
     private String nombre;
 

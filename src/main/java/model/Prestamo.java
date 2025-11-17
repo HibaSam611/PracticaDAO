@@ -1,20 +1,22 @@
 package model;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Prestamo {
 
     private int id;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private int idUsuario;
-    private int idlibro;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private int usuarioId;
+    private int libroId;
 
-    public Prestamo (int id, Date fechaInicio, Date fechaFin) {
+    public Prestamo(int id, LocalDate fechaInicio, LocalDate fechaFin, int usuarioId, int libroId) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.usuarioId = usuarioId;
+        this.libroId = libroId;
     }
 
     public int getId() {
@@ -25,36 +27,36 @@ public class Prestamo {
         this.id = id;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public int getIdlibro() {
-        return idlibro;
+    public int getLibroId() {
+        return libroId;
     }
 
-    public void setIdlibro(int idlibro) {
-        this.idlibro = idlibro;
+    public void setLibroId(int libroId) {
+        this.libroId = libroId;
     }
 
     @Override

@@ -8,8 +8,8 @@ public class Prestamo {
     private int id;
     private Date fechaInicio;
     private Date fechaFin;
-//    private Usuario usuario;
-//    private Libro libro;
+    private int idUsuario;
+    private int idlibro;
 
     public Prestamo (int id, Date fechaInicio, Date fechaFin) {
         this.id = id;
@@ -41,6 +41,21 @@ public class Prestamo {
         this.fechaFin = fechaFin;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdlibro() {
+        return idlibro;
+    }
+
+    public void setIdlibro(int idlibro) {
+        this.idlibro = idlibro;
+    }
 
     @Override
     public String toString() {

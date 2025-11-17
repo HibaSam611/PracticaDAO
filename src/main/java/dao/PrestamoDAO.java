@@ -12,4 +12,7 @@ public interface PrestamoDAO {
     void updatePrestamo(Prestamo prestamo) throws Exception;
     void deletePrestamo(int id) throws Exception;
 
+    List<Prestamo> getPrestamoByUsuario(int id) throws Exception;
+    List<Prestamo> getPrestamoByLibro(int libroid) throws Exception;
+
 }

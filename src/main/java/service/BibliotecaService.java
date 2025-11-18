@@ -12,7 +12,8 @@ public class BibliotecaService {
     private PrestamoDAO prestamoDAO;
     private LibroAutorDAO libroAutorDAO;
 
-    public BibliotecaService() {
+
+    public BibliotecaService(LibroDAO libroDAO, AutorDAO autorDAO, UsuarioDAO usuarioDAO, PrestamoDAO prestamoDAO, LibroAutorDAO libroAutorDAO) {
         this.libroDAO = libroDAO;
         this.autorDAO = autorDAO;
         this.usuarioDAO = usuarioDAO;
@@ -54,11 +55,90 @@ public class BibliotecaService {
         }
     }
 
+    public List<Prestamo> getPrestamoByUsuario(int id) throws Exception{
+        try {
+            return prestamoDAO.getPrestamoByUsuario(id);
+        }catch (Exception e){
+            System.err.println("Error al listar prestamos por usuario: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Prestamo> getPrestamoByLibro(int libroid) throws Exception{
+        try {
+            return prestamoDAO.getPrestamoByLibro(libroid);
+        }catch (Exception e){
+            System.err.println("Error al listar prestamos por libro: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<LibroAutor> listarLibroAutor() throws Exception{
         try {
             return libroAutorDAO.getAllLibrosAutores();
         } catch (Exception e) {
             System.out.println("Error al listar librosAutores: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //BUSCAR Y DEVOLVER UNO CONCRETO
+    public Prestamo getPrestamoById(int id) throws Exception{
+        try {
+            return prestamoDAO.getPrestamoById(id);
+        }catch (Exception e){
+            System.err.println("Error al mostrar el prestamo por usuario: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Usuario getUsuarioById(int id) throws Exception{
+        try {
+            return usuarioDAO.getUsuarioById(id);
+        }catch (Exception e){
+            System.err.println("Error al mostrar el usuario por usuario: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //ANADIR
+    public void anadirPrestamo(Prestamo prestamo) throws Exception {
+        try {
+            prestamoDAO.addPrestamo(prestamo);
+        } catch (Exception e) {
+            System.out.println("Error al añadir prestamo: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void anadirUsuario(Usuario usuario) throws Exception {
+        try {
+            usuarioDAO.addUsuario(usuario);
+        }catch (Exception e){
+            System.out.println("Error al añadir al usuario: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    //ACTUALIZAR
+    public void actualizarPrestamo(Prestamo prestamo) throws Exception {
+        try {
+            prestamoDAO.updatePrestamo(prestamo);
+        }catch (Exception e){
+            System.out.println("Error al actualizar prestamo: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void actualizarUsuario (Usuario usuario) throws Exception {
+        try {
+            usuarioDAO.updateUsuario(usuario);
+        }catch (Exception e){
+            System.out.println("Error al actualizar usuario: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }

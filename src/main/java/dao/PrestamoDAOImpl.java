@@ -3,10 +3,10 @@ package dao;
 import model.Prestamo;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrestamoDAOImpl implements PrestamoDAO {
-
 
     @Override
     public void addPrestamo(Prestamo prestamo) throws Exception {
@@ -32,7 +32,22 @@ public class PrestamoDAOImpl implements PrestamoDAO {
 
     @Override
     public List<Prestamo> getAllPrestamos() throws Exception {
-        return List.of();
+        String sql = "SELECT id, fechaInicio, fechaFin, usuarioId, libroId FROM prestamo";
+        List <Prestamo>lista = new ArrayList<>();
+
+        try  (Connection con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                lista.add(new Prestamo(rs.getInt("id"),
+                                        rs.getDate("fechaInicio").toLocalDate(),
+                                        rs.getDate("fechaFin").toLocalDate(),
+                                        rs.getInt("usuarioId"),
+                                        rs.getInt("libroId")));
+            }
+        }
+
+        return lista;
     }
 
     @Override
@@ -89,12 +104,46 @@ public class PrestamoDAOImpl implements PrestamoDAO {
     }
 
     @Override
-    public List<Prestamo> getPrestamoByUsuario(int id) throws Exception {
-        return List.of();
+    public List<Prestamo> getPrestamoByUsuario(int usuarioId) throws Exception {
+        String sql = "SELECT id, fechaInicio, fechaFin, usuarioId, libroId FROM prestamo WHERE usuarioId = ?";
+        List <Prestamo>lista = new ArrayList<>();
+
+        try (Connection con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)){
+
+            ps.setInt(1, usuarioId);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                lista.add(new Prestamo(rs.getInt("id"),
+                                        rs.getDate("fechaInicio").toLocalDate(),
+                                        rs.getDate("fechaFin").toLocalDate(),
+                                        rs.getInt("usuarioId"),
+                                        rs.getInt("libroId")));
+            }
+        }
+        return lista;
     }
 
     @Override
     public List<Prestamo> getPrestamoByLibro(int libroid) throws Exception {
-        return List.of();
+        String sql = "SELECT id, fechaInicio, fechaFin, usuarioId, libroId FROM prestamo WHERE libroId = ?";
+        List <Prestamo>lista = new ArrayList<>();
+
+        try (Connection con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)){
+
+            ps.setInt(1, libroid);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                lista.add(new Prestamo(rs.getInt("id"),
+                                        rs.getDate("fechaInicio").toLocalDate(),
+                                        rs.getDate("fechaFin").toLocalDate(),
+                                        rs.getInt("usuarioId"),
+                                        rs.getInt("libroId")));
+            }
+        }
+        return lista;
     }
 }

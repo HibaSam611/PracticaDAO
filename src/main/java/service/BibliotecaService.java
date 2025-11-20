@@ -55,6 +55,15 @@ public class BibliotecaService {
         }
     }
 
+    public List<LibroAutor> listarLibroAutor() throws Exception{
+        try {
+            return libroAutorDAO.getAllLibrosAutores();
+        } catch (Exception e) {
+            System.out.println("Error al listar librosAutores: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Prestamo> getPrestamoByUsuario(int id) throws Exception{
         try {
             return prestamoDAO.getPrestamoByUsuario(id);
@@ -69,15 +78,6 @@ public class BibliotecaService {
             return prestamoDAO.getPrestamoByLibro(libroid);
         }catch (Exception e){
             System.err.println("Error al listar prestamos por libro: " + e.getMessage());
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<LibroAutor> listarLibroAutor() throws Exception{
-        try {
-            return libroAutorDAO.getAllLibrosAutores();
-        } catch (Exception e) {
-            System.out.println("Error al listar librosAutores: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -101,9 +101,20 @@ public class BibliotecaService {
             throw new RuntimeException(e);
         }
     }
+    public Libro getLibroById(int id) throws Exception{
+        return libroDAO.getLibroById(id);
+    }
 
 
     //ANADIR
+    public void anadirLibro(Libro libro) throws Exception {
+        try {
+            libroDAO.addLibro(libro);
+        } catch (Exception e) {
+            System.out.println("Error al anadir libro: " + e.getMessage());
+        }
+    }
+
     public void anadirPrestamo(Prestamo prestamo) throws Exception {
         try {
             prestamoDAO.addPrestamo(prestamo);
@@ -119,6 +130,21 @@ public class BibliotecaService {
         }catch (Exception e){
             System.out.println("Error al añadir al usuario: " + e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    public void anadirAutor(Autor autor) throws Exception {
+        try {
+            autorDAO.addAutor(autor);
+        } catch (Exception e) {
+            System.out.println("Error al anadir autor: " + e.getMessage());
+        }
+    }
+    public void anadirLibroAutor(LibroAutor autor) throws Exception {
+        try {
+            libroAutorDAO.addLibroAutor(autor);
+        }catch (Exception e){
+            System.out.println("Error al anadir autor: " + e.getMessage());
         }
     }
 
@@ -142,6 +168,29 @@ public class BibliotecaService {
             throw new RuntimeException(e);
         }
     }
+
+    public void actualizarLibro(Libro libro) throws Exception {
+        try{
+            libroDAO.updateLibro(libro);
+        } catch (Exception e) {
+            System.out.println("Error al actualizar libro: " + e.getMessage());
+        }
+    }
+    public void actualizarAutor(Autor autor) throws Exception {
+        try{
+            autorDAO.updateAutor(autor);
+        } catch (Exception e) {
+            System.out.println("Error al actualizar autor: " + e.getMessage());
+        }
+    }
+    public void actualizarLibroAutor(LibroAutor autor) throws Exception {
+        try {
+            libroAutorDAO.updateLibroAutor(autor);
+        } catch (Exception e) {
+            System.out.println("Error al actualizar libro autor: " + e.getMessage());
+        }
+    }
+
 
 
     //eliminar

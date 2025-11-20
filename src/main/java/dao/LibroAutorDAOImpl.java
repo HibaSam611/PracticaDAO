@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibroAutorDAOImpl implements LibroAutorDAO{
@@ -27,27 +28,60 @@ public class LibroAutorDAOImpl implements LibroAutorDAO{
                 System.out.println("DAO:  LibroAutor insertado -> " + libroAutor);
             }
         }
-
-
     }
 
     @Override
     public List<LibroAutor> getAllLibrosAutores() throws Exception {
-        return List.of();
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "SELECT * FROM libroAutor";
+        List<LibroAutor> libroAutores = new ArrayList<LibroAutor>();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            LibroAutor libroAutor = new LibroAutor();
+            libroAutor.setIdLibro(rs.getInt("idLibro"));
+            libroAutor.setIdAutor(rs.getInt("idAutor"));
+            libroAutores.add(libroAutor);
+        }
+        return libroAutores;
     }
 
     @Override
     public LibroAutor getLibrosAutoresById(int idLibro, int idAutor) throws Exception {
-        return null;
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "SELECT * FROM libroAutor WHERE idLibro = ? AND idAutor = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idLibro);
+        ps.setInt(2, idAutor);
+        ResultSet rs = ps.executeQuery();
+        LibroAutor libroAutor = null;
+        while (rs.next()) {
+            libroAutor = new LibroAutor();
+            libroAutor.setIdLibro(rs.getInt("idLibro"));
+            libroAutor.setIdAutor(rs.getInt("idAutor"));
+            libroAutor.setIdAutor(rs.getInt("idAutor"));
+            libroAutor.setIdAutor(rs.getInt("idAutor"));
+        }
+        return libroAutor ;
     }
 
     @Override
     public void updateLibroAutor(LibroAutor libroAutor) throws Exception {
-
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "UPDATE libroAutor SET idAutor = ? WHERE idLibro = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, libroAutor.getIdAutor());
+        ps.setInt(2, libroAutor.getIdLibro());
+        ps.executeUpdate();
     }
 
     @Override
     public void deleteLibroAutor(int idLibro, int idAutor) throws Exception {
-
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "DELETE FROM libroAutor WHERE idLibro = ? AND idAutor = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idLibro);
+        ps.setInt(2, idAutor);
+        ps.executeUpdate();
     }
 }

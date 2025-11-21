@@ -114,7 +114,7 @@ public class Main {
         System.out.println("*********************");
         System.out.println("*** MENU AUTOR ***");
         System.out.println("1. Añadir autor");
-        System.out.println("2. Acltualizar autor");
+        System.out.println("2. Actualizar autor");
         System.out.println("3. Borrar autor");
         System.out.println("4. Buscar autor");
         System.out.println("5. Lista de autores");
@@ -129,9 +129,16 @@ public class Main {
                 bibliotecaService.anadirAutor(autor);
             }
             case 2 -> {
-                System.out.println("Introduce el nombre del autor");
-                String nombreAutor = sc.nextLine();
-                Autor autor = new Autor(0,nombreAutor);
+                System.out.println("Introduce el id del autor a actualizar");
+                int idAutor = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Introduce el nuevo nombre del autor");
+                String nuevoNombre = sc.nextLine();
+
+                Autor autor = bibliotecaService.getAutorById(idAutor);
+                autor.setNombre(nuevoNombre);
+
                 bibliotecaService.actualizarAutor(autor);
             }
             case 3 -> {
@@ -142,7 +149,8 @@ public class Main {
             case 4 -> {
                 System.out.println("Introduce el id del autor que quieres buscar: ");
                 int id = sc.nextInt();
-                bibliotecaService.getLibroById(id);
+                Autor autor = bibliotecaService.getAutorById(id);
+                System.out.println(autor);
             }
             case 5 -> {bibliotecaService.listarAutor().forEach(System.out::println);}
             case 6 -> {
@@ -157,7 +165,7 @@ public class Main {
         System.out.println("*********************");
         System.out.println("*** MENU USUARIO ***");
         System.out.println("1. Añadir usuario");
-        System.out.println("2. Acltualizar usuario");
+        System.out.println("2. Actualizar usuario");
         System.out.println("3. Borrar usuario");
         System.out.println("4. Buscar usuario");
         System.out.println("5. Lista de usuarios");
@@ -178,7 +186,7 @@ public class Main {
                 int idUsuario = sc.nextInt();
                 sc.nextLine();
 
-                System.out.println("Introduce el nombre del usuario");
+                System.out.println("Introduce el nuevo nombre del usuario");
                 String nuevoNombre = sc.nextLine();
 
                 Usuario usuario = bibliotecaService.getUsuarioById(idUsuario);
@@ -342,8 +350,8 @@ public class Main {
                 System.out.println("Lista de libros del autor");
                 for (LibroAutor la : bibliotecaService.listarLibroAutor()) {
                     if (la.getIdLibro() == idAutor) {
-                        Autor autor = bibliotecaService.getAutorById(la.getIdAutor());
-                        System.out.println("Autor: " + autor.getNombre());
+                        Libro libro = bibliotecaService.getLibroById(la.getIdLibro());
+                        System.out.println("Libro: " + libro.getTitulo());
                     }
                 }
             }

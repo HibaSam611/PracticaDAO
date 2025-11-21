@@ -59,7 +59,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             try (ResultSet rs = ps.executeQuery()){
                 if (rs.next()) {
-                    Usuario usuario = new Usuario(rs.getInt(1), rs.getString(2));
+                    return new Usuario(rs.getInt(1), rs.getString(2));
                 }
             }
         }

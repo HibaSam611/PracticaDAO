@@ -97,12 +97,35 @@ public class BibliotecaService {
         try {
             return usuarioDAO.getUsuarioById(id);
         }catch (Exception e){
-            System.err.println("Error al mostrar el usuario por usuario: " + e.getMessage());
+            System.err.println("Error al mostrar el usuario por idUsuario: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
-    public Libro getLibroById(int id) throws Exception{
-        return libroDAO.getLibroById(id);
+    public Libro getLibroById(int id) throws Exception {
+        try {
+            return libroDAO.getLibroById(id);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar libro por idLibro " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Autor getAutorById(int id) throws Exception {
+        try{
+            return autorDAO.getAutorById(id);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar el autor por idAutor " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public LibroAutor getLibroAutorById(int idLibro, int idAutor) throws Exception {
+        try {
+            return libroAutorDAO.getLibrosAutoresById(idLibro, idAutor);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar la relación libroAutor por id" + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
 

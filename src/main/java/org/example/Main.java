@@ -27,7 +27,6 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println(" ");
             System.out.println(" *** MENÚ BIBLIOTECA ***");
             System.out.println("Selecciona la categoría");
             System.out.println("1. Libro");
@@ -58,7 +57,7 @@ public class Main {
                 }
             }
 
-        }while (opcion != 5);
+        }while (opcion != 4);
     }
 
 
@@ -173,31 +172,26 @@ public class Main {
                 bibliotecaService.anadirUsuario(usuario);
             }
             case 2 -> {
-                System.out.println("Introduce el id del usuario a actualizar");
-                int idUsuario = sc.nextInt();
-                sc.nextLine();
-
                 System.out.println("Introduce el nombre del usuario");
-                String nuevoNombre = sc.nextLine();
+                String nombreUsuario = sc.nextLine();
 
-                Usuario usuario = bibliotecaService.getUsuarioById(idUsuario);
-                usuario.setNombre(nuevoNombre);
-
+                Usuario usuario = new Usuario(0,nombreUsuario);
                 bibliotecaService.actualizarUsuario(usuario);
             }
             case 3 -> {
                 System.out.println("Introduce el id del usuario que quieres borrar: ");
                 int id = sc.nextInt();
+
                 bibliotecaService.eliminarUsuario(id);
             }
             case 4 -> {
                 System.out.println("Introduce el id del usuario que quieres buscar: ");
                 int id = sc.nextInt();
-                Usuario usuario = bibliotecaService.getUsuarioById(id);
-                System.out.println(usuario);
+
+                bibliotecaService.getUsuarioById(id);
             }
             case 5 -> {
-                bibliotecaService.listarUsuario().forEach(System.out::println);
+                bibliotecaService.listarUsuario();
             }
             case 6 -> {
                 System.out.println("Saliendo...");
@@ -231,8 +225,7 @@ public class Main {
                 int idLibro = sc.nextInt();
 
                 LocalDate fechaInicio = LocalDate.now();
-                LocalDate fechaFin = fechaInicio.plusDays(30); //inicialmente el periodo de prestamo será de 30 días
-
+                LocalDate fechaFin = fechaInicio.plusDays(15); //REVISAAAAAAAAAAAAAAAAAR
                 Prestamo prestamo= new Prestamo(0,fechaInicio, fechaFin,idUsuario,idLibro);
 
                 bibliotecaService.anadirPrestamo(prestamo);
@@ -241,7 +234,6 @@ public class Main {
             case 2 -> {
                 System.out.println("Introduce el id del préstamo a actualizar");
                 int idPrestamo = sc.nextInt();
-                sc.nextLine();
                 Prestamo prestamo = bibliotecaService.getPrestamoById(idPrestamo);
 
                 System.out.println("Introduce la nueva fecha de fin en formato AAAA-MM-DD: ");
@@ -249,11 +241,14 @@ public class Main {
                 prestamo.setFechaFin(nuevaFechaFin);
 
                 bibliotecaService.actualizarPrestamo(prestamo);
+                System.out.println("Prestamo actualizado correctamente");
             }
             case 3 -> {
                 System.out.println("Introduce el id del prestamo que quieres borrar: ");
                 int id = sc.nextInt();
+
                 bibliotecaService.eliminarPrestamo(id);
+                System.out.println("Prestamo borrado correctamente");
             }
             case 4 -> {
                 System.out.println("Introduce el id del prestamo quieres buscar: ");
@@ -264,12 +259,12 @@ public class Main {
             case 5 -> {
                 System.out.println("Introduce el id del usuario del prestamo");
                 int id = sc.nextInt();
-                bibliotecaService.getPrestamoByUsuario(id).forEach(System.out::println);
+                bibliotecaService.getPrestamoByUsuario(id).forEach(p -> System.out.println(p));
             }
             case 6 -> {
                 System.out.println("Introduce el id del libro prestado");
                 int id = sc.nextInt();
-                bibliotecaService.getPrestamoByLibro(id).forEach(System.out::println);
+                bibliotecaService.getPrestamoByLibro(id);
             }
             case 7 -> {
                 bibliotecaService.listarPrestamo().forEach(System.out::println);

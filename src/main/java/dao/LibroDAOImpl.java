@@ -11,12 +11,11 @@ import java.util.List;
 public class LibroDAOImpl implements LibroDAO{
     @Override
     public void addLibro(Libro libro) throws Exception {
-        String sql = "INSERT INTO libro VALUES(?,?,?,?)";
+        String sql = "INSERT INTO libro VALUES(,?,?)";
         Connection conn = ConnectionManager.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, libro.getId());
-        ps.setString(2, libro.getTitulo());
-        ps.setString(3, libro.getIsbn());
+        ps.setString(1, libro.getTitulo());
+        ps.setString(2, libro.getIsbn());
         ps.executeUpdate();
     }
 

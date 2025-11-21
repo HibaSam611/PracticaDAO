@@ -84,11 +84,20 @@ public class Main {
                 bibliotecaService.anadirLibro(libro);
             }
             case 2 -> {
-                System.out.println("Introduce el nombre del libro");
-                String nombreLibro = sc.nextLine();
-                System.out.println("Introduce el isbn del libro");
-                String isbn = sc.nextLine();
-                Libro libro = new Libro(0,nombreLibro, isbn);
+                System.out.println("Introduce el id del libro a actualizar");
+                int idLibro = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Introduce el nuevo título del libro");
+                String nuevoTitulo = sc.nextLine();
+
+                System.out.println("Introduce el nuevo isbn del libro");
+                String nuevoIsbn = sc.nextLine();
+
+                Libro libro = bibliotecaService.getLibroById(idLibro);
+                libro.setTitulo(nuevoTitulo);
+                libro.setIsbn(nuevoIsbn);
+
                 bibliotecaService.actualizarLibro(libro);
             }
             case 3 -> {

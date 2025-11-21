@@ -140,7 +140,7 @@ public class Main {
             case 4 -> {
                 System.out.println("Introduce el id del autor que quieres buscar: ");
                 int id = sc.nextInt();
-                bibliotecaService.getLibroById(id);
+                bibliotecaService.getAutorById(id);
             }
             case 5 -> {bibliotecaService.listarAutor();}
             case 6 -> {

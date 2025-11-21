@@ -4,9 +4,11 @@ import dao.*;
 import jdk.swing.interop.SwingInterOpUtils;
 import model.Autor;
 import model.Libro;
+import model.Prestamo;
 import model.Usuario;
 import service.BibliotecaService;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -45,7 +47,7 @@ public class Main {
                     menuUsuario(sc, bibliotecaService);
                 }
                 case 4 -> {
-                    menuPrestamo(sc);
+                    menuPrestamo(sc, bibliotecaService);
                 }
                 case 5 -> {
                     System.out.println("Saliendo...");
@@ -169,26 +171,107 @@ public class Main {
                 Usuario usuario = new Usuario(0,nombre); //el cero es reemplazado por GENERATED_KEYS, otra alternativa es crear otro constructor sin el id
                 bibliotecaService.anadirUsuario(usuario);
             }
+            case 2 -> {
+                System.out.println("Introduce el nombre del usuario");
+                String nombreUsuario = sc.nextLine();
+
+                Usuario usuario = new Usuario(0,nombreUsuario);
+                bibliotecaService.actualizarUsuario(usuario);
+            }
+            case 3 -> {
+                System.out.println("Introduce el id del usuario que quieres borrar: ");
+                int id = sc.nextInt();
+
+                bibliotecaService.eliminarUsuario(id);
+            }
+            case 4 -> {
+                System.out.println("Introduce el id del usuario que quieres buscar: ");
+                int id = sc.nextInt();
+
+                bibliotecaService.getUsuarioById(id);
+            }
+            case 5 -> {
+                bibliotecaService.listarUsuario();
+            }
+            case 6 -> {
+                System.out.println("Saliendo...");
+            }
+            default -> System.out.println("Opcion invalida");
         }
 
     }
 
-    public static void menuPrestamo(Scanner sc) {
+    public static void menuPrestamo(Scanner sc, BibliotecaService bibliotecaService) throws Exception {
 
         System.out.println("*********************");
         System.out.println("*** MENU PRESTAMO ***");
-        System.out.println("1. añadir prestamo");
+        System.out.println("1. Añadir prestamo");
         System.out.println("2. Actualizar prestamo");
         System.out.println("3. Borrar prestamo");
-        System.out.println("4. Buscar prestamo");
-        System.out.println("5. Lista de prestamo");
-        System.out.println("6. Salir");
+        System.out.println("4. Buscar prestamo por id");
+        System.out.println("5. Buscar prestamo por usuario");
+        System.out.println("6. Buscar prestamo por libro");
+        System.out.println("7. Lista de prestamo");
+        System.out.println("8. Salir");
         int opcion = sc.nextInt();
         sc.nextLine();
+
         switch (opcion) {
             case 1 -> {
+                System.out.println("Escribe el id del usuario");
+                int idUsuario = sc.nextInt();
 
+                System.out.println("Escribe el id del libro");
+                int idLibro = sc.nextInt();
+
+                LocalDate fechaInicio = LocalDate.now();
+                LocalDate fechaFin = fechaInicio.plusDays(15); //REVISAAAAAAAAAAAAAAAAAR
+                Prestamo prestamo= new Prestamo(0,fechaInicio, fechaFin,idUsuario,idLibro);
+
+                bibliotecaService.anadirPrestamo(prestamo);
+                System.out.println("Prestamo creado correctamente");
             }
+            case 2 -> {
+                System.out.println("Introduce el id del préstamo a actualizar");
+                int idPrestamo = sc.nextInt();
+                Prestamo prestamo = bibliotecaService.getPrestamoById(idPrestamo);
+
+                System.out.println("Introduce la nueva fecha de fin en formato AAAA-MM-DD: ");
+                LocalDate nuevaFechaFin = LocalDate.parse(sc.nextLine());
+                prestamo.setFechaFin(nuevaFechaFin);
+
+                bibliotecaService.actualizarPrestamo(prestamo);
+                System.out.println("Prestamo actualizado correctamente");
+            }
+            case 3 -> {
+                System.out.println("Introduce el id del prestamo que quieres borrar: ");
+                int id = sc.nextInt();
+
+                bibliotecaService.eliminarPrestamo(id);
+                System.out.println("Prestamo borrado correctamente");
+            }
+            case 4 -> {
+                System.out.println("Introduce el id del prestamo quieres buscar: ");
+                int id = sc.nextInt();
+                bibliotecaService.getPrestamoById(id);
+            }
+            case 5 -> {
+                System.out.println("Introduce el id del usuario del prestamo");
+                int id = sc.nextInt();
+                bibliotecaService.getPrestamoByUsuario(id);
+            }
+            case 6 -> {
+                System.out.println("Introduce el id del libro prestado");
+                int id = sc.nextInt();
+                bibliotecaService.getPrestamoByLibro(id);
+            }
+            case 7 -> {
+                bibliotecaService.listarPrestamo().forEach(System.out::println);
+            }
+            case 8 -> {
+                System.out.println("Saliendo...");
+            }
+            default -> System.out.println("Opcion invalida");
         }
     }
 

@@ -64,6 +64,7 @@ public class BibliotecaService {
         }
     }
 
+    //BUSCAR Y DEVOLVER UNO CONCRETO
     public List<Prestamo> getPrestamoByUsuario(int id) throws Exception{
         try {
             return prestamoDAO.getPrestamoByUsuario(id);
@@ -83,7 +84,6 @@ public class BibliotecaService {
     }
 
 
-    //BUSCAR Y DEVOLVER UNO CONCRETO
     public Prestamo getPrestamoById(int id) throws Exception{
         try {
             return prestamoDAO.getPrestamoById(id);

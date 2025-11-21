@@ -99,7 +99,8 @@ public class Main {
             case 4 -> {
                 System.out.println("Introduce el id del libro que quieres buscar: ");
                 int id = sc.nextInt();
-                bibliotecaService.getLibroById(id);
+                Libro libro = bibliotecaService.getLibroById(id);
+                System.out.println(libro);
             }
             case 5 -> bibliotecaService.listarLibro().forEach(System.out::println);
             case 6 -> {

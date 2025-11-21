@@ -26,7 +26,7 @@ public class BibliotecaService {
             return libroDAO.getAllLibros();
         } catch (Exception e) {
             System.err.println("Error al listar libros: " + e.getMessage());
-            return List.of();
+            throw new RuntimeException(e);
         }
     }
 
@@ -35,7 +35,7 @@ public class BibliotecaService {
             return autorDAO.getAllAutores();
         } catch (Exception e) {
             System.err.println("Error al listar autores: " + e.getMessage());
-            return List.of();
+            throw new RuntimeException(e);
         }
     }
     public List<Usuario> listarUsuario() throws Exception{
@@ -161,6 +161,7 @@ public class BibliotecaService {
             autorDAO.addAutor(autor);
         } catch (Exception e) {
             System.out.println("Error al anadir autor: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void anadirLibroAutor(LibroAutor autor) throws Exception {
@@ -168,6 +169,7 @@ public class BibliotecaService {
             libroAutorDAO.addLibroAutor(autor);
         }catch (Exception e){
             System.out.println("Error al anadir autor: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -197,6 +199,7 @@ public class BibliotecaService {
             libroDAO.updateLibro(libro);
         } catch (Exception e) {
             System.out.println("Error al actualizar libro: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void actualizarAutor(Autor autor) throws Exception {
@@ -204,6 +207,7 @@ public class BibliotecaService {
             autorDAO.updateAutor(autor);
         } catch (Exception e) {
             System.out.println("Error al actualizar autor: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void actualizarLibroAutor(LibroAutor autor) throws Exception {
@@ -211,6 +215,7 @@ public class BibliotecaService {
             libroAutorDAO.updateLibroAutor(autor);
         } catch (Exception e) {
             System.out.println("Error al actualizar libro autor: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -222,6 +227,7 @@ public class BibliotecaService {
             libroDAO.deleteLibro(id);
         } catch (Exception e) {
             System.err.println("Error al eliminar libro: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void eliminarAutor(int id) {
@@ -229,6 +235,7 @@ public class BibliotecaService {
             autorDAO.deleteAutor(id);
         } catch (Exception e) {
             System.err.println("Error al eliminar autor: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void eliminarUsuario(int id) {

@@ -101,7 +101,7 @@ public class Main {
                 int id = sc.nextInt();
                 bibliotecaService.getLibroById(id);
             }
-            case 5 -> bibliotecaService.listarLibro();
+            case 5 -> bibliotecaService.listarLibro().forEach(System.out::println);
             case 6 -> {
                 System.out.println("Saliendo...");
             }
@@ -144,7 +144,7 @@ public class Main {
                 int id = sc.nextInt();
                 bibliotecaService.getLibroById(id);
             }
-            case 5 -> {bibliotecaService.listarAutor();}
+            case 5 -> {bibliotecaService.listarAutor().forEach(System.out::println);}
             case 6 -> {
                 System.out.println("Saliendo...");
             }

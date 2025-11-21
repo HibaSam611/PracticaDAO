@@ -253,12 +253,13 @@ public class Main {
             case 4 -> {
                 System.out.println("Introduce el id del prestamo quieres buscar: ");
                 int id = sc.nextInt();
-                bibliotecaService.getPrestamoById(id);
+                Prestamo prestamo = bibliotecaService.getPrestamoById(id);
+                System.out.println(prestamo);
             }
             case 5 -> {
                 System.out.println("Introduce el id del usuario del prestamo");
                 int id = sc.nextInt();
-                bibliotecaService.getPrestamoByUsuario(id);
+                bibliotecaService.getPrestamoByUsuario(id).forEach(p -> System.out.println(p));
             }
             case 6 -> {
                 System.out.println("Introduce el id del libro prestado");

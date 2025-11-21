@@ -61,7 +61,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
 
             try (ResultSet rs = ps.executeQuery()){
                 if (rs.next()){
-                    new Prestamo (rs.getInt("id"),
+                    return new Prestamo (rs.getInt("id"),
                                         rs.getDate("fechaInicio").toLocalDate(),
                                         rs.getDate("fechaFin").toLocalDate(),
                                         rs.getInt("usuarioId"),

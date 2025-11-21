@@ -12,7 +12,7 @@ import java.util.List;
 public class LibroAutorDAOImpl implements LibroAutorDAO{
     @Override
     public void addLibroAutor(LibroAutor libroAutor) throws Exception {
-        String sql = "INSERT INTO libroAutor (idLibro, idAutor) VALUES(?,?)";
+        String sql = "INSERT INTO Libro_Autor (idLibro, idAutor) VALUES(?,?)";
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             ps.setInt(1, libroAutor.getIdLibro());
@@ -33,7 +33,7 @@ public class LibroAutorDAOImpl implements LibroAutorDAO{
     @Override
     public List<LibroAutor> getAllLibrosAutores() throws Exception {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "SELECT * FROM libroAutor";
+        String sql = "SELECT * FROM Libro_Autor";
         List<LibroAutor> libroAutores = new ArrayList<LibroAutor>();
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -49,7 +49,7 @@ public class LibroAutorDAOImpl implements LibroAutorDAO{
     @Override
     public LibroAutor getLibrosAutoresById(int idLibro, int idAutor) throws Exception {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "SELECT * FROM libroAutor WHERE idLibro = ? AND idAutor = ?";
+        String sql = "SELECT * FROM Libro_Autor WHERE idLibro = ? AND idAutor = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, idLibro);
         ps.setInt(2, idAutor);
@@ -66,7 +66,7 @@ public class LibroAutorDAOImpl implements LibroAutorDAO{
     @Override
     public void updateLibroAutor(LibroAutor libroAutor) throws Exception {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "UPDATE libroAutor SET idAutor = ? WHERE idLibro = ?";
+        String sql = "UPDATE Libro_Autor SET idAutor = ? WHERE idLibro = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, libroAutor.getIdAutor());
         ps.setInt(2, libroAutor.getIdLibro());
@@ -77,7 +77,7 @@ public class LibroAutorDAOImpl implements LibroAutorDAO{
     @Override
     public void deleteLibroAutor(int idLibro, int idAutor) throws Exception {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "DELETE FROM libroAutor WHERE idLibro = ? AND idAutor = ?";
+        String sql = "DELETE FROM Libro_Autor WHERE idLibro = ? AND idAutor = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, idLibro);
         ps.setInt(2, idAutor);

@@ -61,7 +61,7 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo -> ID=" + id + " Fecha Inicio=" + fechaInicio + " Fecha Fin=" + fechaFin;
+        return "Prestamo -> ID Prestamo=" + id + " Fecha Inicio=" + fechaInicio + " Fecha Fin=" + fechaFin + " ID usuario= "+ usuarioId +" ID libro= "+ libroId;
     }
 
 }

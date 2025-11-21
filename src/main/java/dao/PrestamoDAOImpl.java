@@ -27,6 +27,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
                     prestamo.setId(rs.getInt(1));
                 }
             }
+            System.out.println("Prestamo insertado -> " + prestamo);
         }
     }
 
@@ -86,7 +87,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
             ps.setInt(5, prestamo.getId());
 
             ps.executeUpdate();
-            System.out.println("Registro actualizado correctamente");
+            System.out.println("Prestamo actualizado correctamente");
         }
     }
 
@@ -99,7 +100,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
 
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Registro eliminado correctamente");
+            System.out.println("Prestamo eliminado -> " + id);
         }
     }
 

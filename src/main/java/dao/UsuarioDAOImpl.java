@@ -27,7 +27,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 }
             }
 
-            System.out.println("DAO: usuario insertado -> " + usuario);
+            System.out.println("Usuario insertado -> " + usuario);
         }
     }
 
@@ -59,7 +59,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             try (ResultSet rs = ps.executeQuery()){
                 if (rs.next()) {
-                    Usuario usuario = new Usuario(rs.getInt(1), rs.getString(2));
+                    return new Usuario(rs.getInt(1), rs.getString(2));
                 }
             }
         }
@@ -77,7 +77,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ps.setInt(2, usuario.getId());
 
             ps.executeUpdate();
-            System.out.println("DAO: usuario actualizado -> " + usuario);
+            System.out.println("Usuario actualizado -> " + usuario);
         }
     }
 
@@ -90,7 +90,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("DAO: usuario eliminado -> " + id);
+            System.out.println("Usuario eliminado -> " + id);
 
         }
     }

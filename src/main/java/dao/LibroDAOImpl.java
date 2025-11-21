@@ -21,6 +21,7 @@ public class LibroDAOImpl implements LibroDAO {
         ps.setString(2, libro.getIsbn());
 
         ps.executeUpdate();
+        System.out.println("DAO: libro insertado -> " + libro);
     }
 
     @Override
@@ -76,6 +77,7 @@ public class LibroDAOImpl implements LibroDAO {
         ps.setInt(3, libro.getId());
 
         ps.executeUpdate();
+        System.out.println("DAO: libro actualizado -> " + libro);
     }
 
     @Override
@@ -87,6 +89,7 @@ public class LibroDAOImpl implements LibroDAO {
 
         ps.setInt(1, id);
         ps.executeUpdate();
+        System.out.println("DAO: libro borrado -> " + getLibroById(id));
     }
 }
 

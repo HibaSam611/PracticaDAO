@@ -231,7 +231,8 @@ public class Main {
                 int idLibro = sc.nextInt();
 
                 LocalDate fechaInicio = LocalDate.now();
-                LocalDate fechaFin = fechaInicio.plusDays(15); //REVISAAAAAAAAAAAAAAAAAR
+                LocalDate fechaFin = fechaInicio.plusDays(30); //inicialmente el periodo de prestamo será de 30 días
+
                 Prestamo prestamo= new Prestamo(0,fechaInicio, fechaFin,idUsuario,idLibro);
 
                 bibliotecaService.anadirPrestamo(prestamo);
